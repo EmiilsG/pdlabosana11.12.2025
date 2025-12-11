@@ -1,4 +1,6 @@
 <?php
+
+
 $servername = "localhost";
 $username = "book_review_user_24092025";
 $password = "password";
@@ -15,10 +17,18 @@ if ($mysqli -> connect_errno) {
   echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
   exit();
 }
-$full_name = "Emils";
-$book_title = "asdfg";
-$review_text = "asdf";
-$rating = 2;
+$full_name = $_POST['fname'];
+echo $full_name;
+
+$book_title = $_POST['title'];
+echo $book_title;
+
+$review_text = $_POST['description'];
+echo $review_text;
+
+$rating = $_POST['rating'];
+echo $rating;
+
 // $submitted_at = "2019-01-01";
 
 
@@ -27,7 +37,7 @@ $rating = 2;
 $stmt = $mysqli -> prepare("INSERT INTO book_review (full_name, book_title, review_text, rating) VALUES (?, ?, ?, ?)");
 $stmt->bind_param("sssd", $full_name, $book_title, $review_text, $rating);
 
-$stmt->execute();
+ $stmt->execute();
 
 echo "New records created successfully";
 
