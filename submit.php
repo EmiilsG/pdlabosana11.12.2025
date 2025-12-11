@@ -33,3 +33,4 @@ echo "New records created successfully";
 
 $stmt->close();
 $mysqli->close();
+
