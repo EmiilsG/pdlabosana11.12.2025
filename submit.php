@@ -15,20 +15,21 @@ if ($mysqli -> connect_errno) {
   echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
   exit();
 }
+$full_name = "Emils";
+$book_title = "asdfg";
+$review_text = "asdf";
+$rating = 2;
+// $submitted_at = "2019-01-01";
 
-$stmt = $mysqli -> prepare("INSERT INTO book_review (full_name , book_title , review_text,  rating, submitted_at) VALUES (?, ?, ?, ?, ?)");
-$stmt -> bind_param( $full_name, $book_title, $review_text, $rating, $submitted_at );
 
-$fname = "Emils";
-$lname = "Grinerts";
-$title = "asdfg";
-$description = "fddf";
-$level = 1;
-$stmt -> execute();
+// $stmt = $mysqli -> prepare("INSERT INTO book_review (full_name , book_title , review_text,  rating, submitted_at) VALUES (?, ?, ?, ?, ?)");
+// $stmt->bind_param( $full_name, $book_title, $review_text, $rating, $submitted_at );
+$stmt = $mysqli -> prepare("INSERT INTO book_review (full_name, book_title, review_text, rating) VALUES (?, ?, ?, ?)");
+$stmt->bind_param("sssd", $full_name, $book_title, $review_text, $rating);
+
+$stmt->execute();
 
 echo "New records created successfully";
 
-$stmt -> close();
-$mysqli -> close();
-?>
-?>
+$stmt->close();
+$mysqli->close();
